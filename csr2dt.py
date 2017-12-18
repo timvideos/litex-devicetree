@@ -145,7 +145,7 @@ cs3 : &gpio1 2 0
 """
 
 templates["memory-ethmac"] = lambda m: """
-	ethmac-sram: sram@%(start)x {
+	ethmac_sram: sram@%(start)x {
 		compatible = "mmio-sram";
 		reg = <0x%(start)x 0x%(size)x>;
 
@@ -863,9 +863,6 @@ def main(argv):
         elif record_type == 'memory_region':
             memory_regions[record_name] = MemoryRegion(record_name, int(record_value, 16), int(record_size))
 
-    import pprint
-    pprint.pprint(global_constants)
-
     assert 'config_cpu_type' in global_constants
     assert 'config_csr_data_width' in global_constants
     assert global_constants['config_csr_data_width'] == 8
@@ -879,7 +876,6 @@ def main(argv):
 
     devices = []
     for modname, module in sorted(modules.items()):
-        print(modname, module)
         if 'device-'+modname in templates:
             devices.append(templates['device-'+modname](module))
         else:
