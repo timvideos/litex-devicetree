@@ -145,7 +145,7 @@ cs3 : &gpio1 2 0
 """
 
 templates["memory-ethmac"] = lambda m: """
-	ethmac-sram: sram@%(start)x {
+	ethmac_sram: sram@%(start)x {
 		compatible = "mmio-sram";
 		reg = <0x%(start)x 0x%(size)x>;
 
